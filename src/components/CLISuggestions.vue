@@ -85,13 +85,13 @@ helm show values ${this.packName} --version ${this.packageInfo?.version} > ${thi
 ### helm ${this.$t('install')} ${this.packageInfo?.name}
 
 \`\`\`bash
-helm install ${this.releaseName} ${this.packName} -n ${this.releaseName} --version ${this.packageInfo?.version} -f ${this.releaseName}-values.yaml
+helm install ${this.releaseName} ${this.packName} -n ${this.releaseName} --version ${this.packageInfo?.version} --create-namespace -f ${this.releaseName}-values.yaml
 \`\`\`
 
 ### helm ${this.$t('upgrade')} ${this.packageInfo?.name}
 
 \`\`\`bash
-helm upgrade ${this.packageInfo?.name} ${this.packName} -n ${this.releaseName} --version ${this.packageInfo?.version} -f ${this.releaseName}-values.yaml
+helm upgrade ${this.packageInfo?.name} ${this.packName} -n ${this.releaseName} --version ${this.packageInfo?.version} --create-namespace -f ${this.releaseName}-values.yaml
 \`\`\`
 
 ### helm ${this.$t('delete')} ${this.packageInfo?.name}
