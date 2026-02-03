@@ -52,12 +52,60 @@ export default {
       locale,
       localeOptions: [
         {
+          lang: 'zh',
+          name: '繁體中文'
+        },
+        {
           lang: 'en',
           name: 'English'
         },
         {
-          lang: 'zh',
-          name: '繁體中文'
+          lang: 'ar',
+          name: 'Arabic'
+        },
+        {
+          lang: 'de',
+          name: 'Deutsch'
+        },
+        {
+          lang: 'es',
+          name: 'Español'
+        },
+        {
+          lang: 'fr',
+          name: 'Français'
+        },
+        {
+          lang: 'hi',
+          name: 'हिन्दी'
+        },
+        {
+          lang: 'ja',
+          name: '日本語'
+        },
+        {
+          lang: 'ko',
+          name: '한국어'
+        },
+        {
+          lang: 'pt',
+          name: 'Português'
+        },
+        {
+          lang: 'ru',
+          name: 'Русский'
+        },
+        {
+          lang: 'th',
+          name: 'ไทย'
+        },
+        {
+          lang: 'vi',
+          name: 'Tiếng Việt'
+        },
+        {
+          lang: 'zh_Hans',
+          name: '简体中文'
         }
       ]
     };
