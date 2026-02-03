@@ -29,7 +29,7 @@ yarn install
 ### Compiles and hot-reloads for development
 
 ```bash
-yarb run start
+yarn run start
 ```
 
 ### Compiles and minifies for production
