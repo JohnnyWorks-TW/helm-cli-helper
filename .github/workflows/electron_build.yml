@@ -8,8 +8,12 @@ on:
     tags:
       - 'v[0-9]+.[0-9]+.[0-9]+'
 
+env:
+  APP_NAME: helm-cli-helper
+
 jobs:
   build:
+    name: Build on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
 
     strategy:
@@ -18,9 +22,10 @@ jobs:
         os: [macos-latest, ubuntu-latest, windows-latest]
 
     steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+      - name: Check out Git repository
+        uses: actions/checkout@v4
+      - name: Install Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
@@ -35,24 +40,24 @@ jobs:
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v4.3.1
         with:
-          name: helm-cli-helper-${{ runner.os }}
+          name: ${{ env.APP_NAME }}-${{ runner.os }}
           path: out
           overwrite: true
       - name: Compress binary (Windows)
         if: runner.os == 'Windows'
         run: |
-          Compress-Archive -Path out\* -DestinationPath helm-cli-helper-windows.zip
+          Compress-Archive -Path out\* -DestinationPath ${{ env.APP_NAME }}-windows.zip
       - name: Compress binary (Linux)
         if: runner.os == 'Linux'
         run: |
-          cd out && zip -r ../helm-cli-helper-linux.zip *
+          cd out && zip -r ../${{ env.APP_NAME }}-linux.zip *
       - name: Compress binary (macOS)
         if: runner.os == 'macOS'
         run: |
-          cd out && zip -r ../helm-cli-helper-mac.zip *
+          cd out && zip -r ../${{ env.APP_NAME }}-mac.zip *
       - name: Release
         uses: softprops/action-gh-release@v2.0.4
         with:
-          files: helm-cli-helper-*.zip
+          files: ${{ env.APP_NAME }}-*.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
